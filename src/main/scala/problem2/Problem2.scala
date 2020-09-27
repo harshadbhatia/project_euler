@@ -27,7 +27,29 @@ object Problem2 extends App {
   }
 
   fibonacci(2, 4000000)
-
   println(list.filter(e => e % 2 == 0).sum)
+
+  var l2 = new ListBuffer[Int]
+  l2 += (0,1)
+
+  def fibonacciOptimised(start: Int, max: Int, int: ListBuffer[Int]): Unit = {
+
+    @tailrec
+    def loop(n: Int, m: Int, in: ListBuffer[Int]): ListBuffer[Int] = {
+      val prevSum: Int = in(n - 2) + in(n - 1)
+      if (prevSum < m) {
+        in += prevSum
+        loop(n + 1, m, in)
+      } else in
+    }
+    loop(start, max, int)
+
+  }
+
+  fibonacciOptimised(2, 4000000, l2)
+
+  println(l2.filter(e => e % 2 == 0).sum)
+
+
 
 }
