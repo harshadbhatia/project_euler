@@ -12,16 +12,16 @@ package problem6
  * numbers and the square of the sum.
  */
 object Problem6 extends App {
-  def sqaureEach(n: Int): Int = {
+  def squareEach(n: Int): Int = {
     (1 to n).toList.iterator.map(i => i * i).sum
   }
 
-  def sqaureSumN(n: Int): Int = {
+  def squareSumN(n: Int): Int = {
     math.pow((1 to n).sum, 2).toInt
   }
 
   val number = 100
-  val result = sqaureSumN(number) - sqaureEach(number)
+  val result = squareSumN(number) - squareEach(number)
   println(result)
 
 }

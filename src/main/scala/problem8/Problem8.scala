@@ -6,18 +6,13 @@ object Problem8 extends App {
   val step: Int = 13
   val number: String = str.replaceAll("\n", "")
 
-  def calculateProduct(start: Int, end: Int, products: List[Long]): List[Long] = {
+  def calculateProduct(start: Int, end: Int, products: List[BigInt]): List[BigInt] = {
     if (end > number.length) products
     else {
-      println(start, end, number.slice(start, end), number.slice(start, end).toList.map(_.asDigit).product)
-      number.slice(start, end).toList.map(_.asDigit).product ::
-        calculateProduct(start+1, end+1, products)
+      // If applyBigInt on string it gives different result
+      val slice: List[BigInt] = number.slice(start, end).toList.map(_.asDigit).map(BigInt(_))
+      slice.product :: calculateProduct(start+1, end+1, products)
     }
-
   }
-
-
-  println(calculateProduct(0, step, List[Long]()).max)
-
-
+  println(calculateProduct(0, step, List[BigInt]()).max)
 }
