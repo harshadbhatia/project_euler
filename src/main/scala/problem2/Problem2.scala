@@ -46,10 +46,29 @@ object Problem2 extends App {
 
   }
 
+
   fibonacciOptimised(2, 4000000, l2)
 
   println(l2.filter(e => e % 2 == 0).sum)
 
+  // Method 3
+  // Golden ratio is which tells nearest approximation of fibonnaci number
+  def goldenRatio(n: Double): Double = {
+    val phi: Double = 1.618034
+    (math.pow(phi, n) - math.pow(1 - phi, n)) / math.sqrt(5)
+  }
 
+  val max = 4000000
+  val initial: (List[Int], Int) = (List(1,0), 0)
 
+  val result2 = Iterator.from(1)
+    .takeWhile(goldenRatio(_) <= max)
+    .foldLeft(initial)(
+      (t,_) => {
+        val (List(f, l), es) = t
+        val fib = f + l
+        (List(fib, f), if(fib % 2 == 0) es + fib else es)
+      })._2
+
+  println(result2)
 }

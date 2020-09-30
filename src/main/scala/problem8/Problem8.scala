@@ -15,4 +15,15 @@ object Problem8 extends App {
     }
   }
   println(calculateProduct(0, step, List[BigInt]()).max)
+
+  // second solution
+  println(
+    number.iterator.sliding(13).map(_.map(_.asDigit).map(BigInt(_)).product).max
+  )
+  // third solution
+  println(
+    number.map(_.asDigit).map(BigInt(_)).iterator.sliding(13).map(_.product).max
+  )
+
+
 }
